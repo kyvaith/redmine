@@ -483,6 +483,7 @@ pl:
   label_logout: Wylogowanie
   label_max_size: Maksymalny rozmiar
   label_me: ja
+  label_author: autor
   label_member: Uczestnik
   label_member_new: Nowy uczestnik
   label_member_plural: Uczestnicy
