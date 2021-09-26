@@ -726,6 +726,7 @@ ja:
   label_disabled: 無効
   label_show_completed_versions: 完了したバージョンを表示
   label_me: 自分
+  label_author: チケット作成者 
   label_board: フォーラム
   label_board_new: 新しいフォーラム
   label_board_plural: フォーラム
