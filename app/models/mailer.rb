@@ -103,10 +103,6 @@ class Mailer < ActionMailer::Base
     @users = to_users + cc_users
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue)
     @user = @users[0]
-
-    # Temporary measures for cases where emails are not sent if the conditions for sending emails are individuals
-    ActionMailer::Base.perform_deliveries=true
-
     mail :to => to_user,
       :cc => @users,
       :subject => "[#{issue.project.name} - #{issue.tracker.name} ##{issue.id}] (#{issue.status.name}) #{issue.subject}"
