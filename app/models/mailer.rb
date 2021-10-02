@@ -91,7 +91,7 @@ class Mailer < ActionMailer::Base
 
   # Builds a mail for notifying to_users and cc_users about a new issue
   # Single message version
-  def issue_add_singlemail(to_user,to_users, cc_users,issue)
+  def issue_add_singlemail(to_users, cc_users, issue)
     redmine_headers 'Project' => issue.project.identifier,
                     'Issue-Id' => issue.id,
                     'Issue-Author' => issue.author.login
@@ -100,11 +100,9 @@ class Mailer < ActionMailer::Base
     references issue
     @author = issue.author
     @issue = issue
-    @users = to_users + cc_users
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue)
-    @user = @users[0]
-    mail :to => to_user + @author,
-      :cc => cc_users - to_user -@author,
+    mail :to => to_users + @author,
+      :cc => cc_users - to_users -@author,
       :subject => "[#{issue.project.name} - #{issue.tracker.name} ##{issue.id}] (#{issue.status.name}) #{issue.subject}"
   end
 
@@ -125,7 +123,7 @@ class Mailer < ActionMailer::Base
       # for singlemail before Redmine 4.0 style
       to = issue.notified_users
       cc = issue.notified_watchers - to
-      issue_add_singlemail(to[0] , to ,cc ,issue).deliver_later
+      issue_add_singlemail(to ,cc ,issue).deliver_later
     end
   end
 
