@@ -103,8 +103,8 @@ class Mailer < ActionMailer::Base
     @users = to_users + cc_users
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue)
     @user = @users[0]
-    mail :to => to_user,
-      :cc => @users,
+    mail :to => to_user + @author,
+      :cc => cc_users - to_user -@author,
       :subject => "[#{issue.project.name} - #{issue.tracker.name} ##{issue.id}] (#{issue.status.name}) #{issue.subject}"
   end
 
@@ -169,12 +169,12 @@ class Mailer < ActionMailer::Base
     s += "(#{issue.status.name}) " if journal.new_value_for('status_id') && Setting.show_status_changes_in_mail_subject?
     s += issue.subject
     @issue = issue
-    @users = to_users + cc_users
+    # @users = to_users + cc_users
     @journal = journal
     @journal_details = journal.visible_details
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue, :anchor => "change-#{journal.id}")
-    mail :to => @author,
-      :cc => @users,
+    mail :to =>  to_users + @author,
+      :cc => cc_users - to-users- @author,
       :subject => s
   end
 
