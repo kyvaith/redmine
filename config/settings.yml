@@ -343,4 +343,4 @@ timelog_accept_future_dates:
 show_status_changes_in_mail_subject:
   default: 1
 text_send_mail_multi_or_single:
-  default: 1
+  default: 0
