@@ -172,7 +172,7 @@ class Mailer < ActionMailer::Base
     @journal_details = journal.visible_details
     @issue_url = url_for(:controller => 'issues', :action => 'show', :id => issue, :anchor => "change-#{journal.id}")
     mail :to =>  to_users + @author,
-      :cc => cc_users - to-users- @author,
+      :cc => cc_users - to_users- @author,
       :subject => s
   end
 
