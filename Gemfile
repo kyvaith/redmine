@@ -50,8 +50,8 @@ end
 
 # Optional CommonMark support, not for JRuby
 group :common_mark do
-  gem "html-pipeline", "~> 2.12"
-  gem "commonmarker", "~> 0.20"
+  gem "html-pipeline", "~> 2.13.2"
+  gem "commonmarker", (Gem.ruby_version < Gem::Version.new('2.6.0') ? '0.21.0' : '0.23.1')
   gem "sanitize", "~> 5.1"
 end
 
