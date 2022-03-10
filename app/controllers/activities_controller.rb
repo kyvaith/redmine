@@ -22,8 +22,14 @@ class ActivitiesController < ApplicationController
   before_action :find_optional_project_by_id, :authorize_global
   accept_rss_auth :index
 
+  helper :issues
+  helper :custom_fields
+
   def index
     @days = Setting.activity_days_default.to_i
+    if params[:days].present?
+      @days = params[:days].to_i
+    end
 
     if params[:from]
       begin; @date_to = params[:from].to_date + 1; rescue; end

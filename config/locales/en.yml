@@ -889,6 +889,7 @@ en:
   label_optional: optional
   label_show_completed_versions: Show completed versions
   label_me: me
+  label_author: Author
   label_board: Forum
   label_board_new: New forum
   label_board_plural: Forums
@@ -978,6 +979,11 @@ en:
   label_version_sharing_hierarchy: With project hierarchy
   label_version_sharing_tree: With project tree
   label_version_sharing_system: With all projects
+  label_category_sharing_none: Not shared
+  label_category_sharing_descendants: With subprojects
+  label_category_sharing_hierarchy: With project hierarchy
+  label_category_sharing_tree: With project tree
+  label_category_sharing_system: With all projects
   label_update_issue_done_ratios: Update issue done ratios
   label_copy_source: Source
   label_copy_target: Target
@@ -1109,6 +1115,12 @@ en:
   label_display_type_board: Board
   label_my_bookmarks: My bookmarks
   label_assign_to_me: Assign to me
+  label_orfilter: "OR filters"
+  label_orfilter_and_any: "AND any following"
+  label_orfilter_or_any: "OR any following"
+  label_orfilter_or_all: "OR all following"
+  label_match: "match"
+  label_not_match: "not match"
 
   button_login: Login
   button_submit: Submit
