@@ -601,17 +601,20 @@ function copyTextToClipboard(target) {
 }
 
 function updateIssueFrom(url, el) {
-  $('#all_attributes input, #all_attributes textarea, #all_attributes select').each(function(){
-    $(this).data('valuebeforeupdate', $(this).val());
-  });
-  if (el) {
-    $("#form_update_triggered_by").val($(el).attr('id'));
-  }
-  return $.ajax({
-    url: url,
-    type: 'post',
-    data: $('#issue-form').serialize()
-  });
+	if (!$('#issue_tracker_id').val() == '') {
+	  $('#all_attributes input, #all_attributes textarea, #all_attributes select').each(function(){
+		$(this).data('valuebeforeupdate', $(this).val());
+	  });
+	  if (el) {
+		$("#form_update_triggered_by").val($(el).attr('id'));
+	  }
+	  return $.ajax({
+		url: url,
+		type: 'post',
+		data: $('#issue-form').serialize()
+	  });
+  
+	}
 }
 
 function replaceIssueFormWith(html){
@@ -1107,21 +1110,6 @@ function setupWikiTableSortableHeader() {
     }
   });
 }
-
-$(function () {
-  $("[title]:not(.no-tooltip)").tooltip({
-    content: function() {
-      return $(title)
-    },
-    show: {
-      delay: 400
-    },
-    position: {
-      my: "center bottom-5",
-      at: "center top"
-    }
-  });
-});
 
 function inlineAutoComplete(element) {
     'use strict';

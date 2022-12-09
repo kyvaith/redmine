@@ -792,9 +792,6 @@ class Issue < ActiveRecord::Base
           end
         )
         errors.add :parent_issue_id, :invalid
-      elsif !closed? && @parent_issue.closed?
-        # cannot attach an open issue to a closed parent
-        errors.add :base, :open_issue_with_closed_parent
       elsif !new_record?
         # moving an existing issue
         if move_possible?(@parent_issue)
@@ -1673,7 +1670,7 @@ class Issue < ActiveRecord::Base
       scope = Project
     end
 
-    scope.where(condition).having_trackers
+    scope.where(condition)
   end
 
   # Returns a scope of trackers that user can assign the issue to

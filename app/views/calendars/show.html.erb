@@ -1,3 +1,9 @@
+  <% if @project.description.present? %>
+  <div class="wiki">
+    <%= textilizable @project.description %>
+  </div>
+  <% end %>
+
 <h2><%= @query.new_record? ? l(:label_calendar) : @query.name %></h2>
 
 <%= form_tag({:controller => 'calendars', :action => 'show', :project_id => @project},

@@ -19,6 +19,7 @@ gem 'i18n', '~> 1.8.2'
 gem "rbpdf", "~> 1.20.0"
 gem 'addressable'
 gem 'rubyzip', '~> 2.3.0'
+gem 'activerecord-session_store'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :x64_mingw, :mswin]
@@ -109,3 +110,6 @@ end
 Dir.glob File.expand_path("../plugins/*/{Gemfile,PluginGemfile}", __FILE__) do |file|
   eval_gemfile file
 end
+
+gem 'rbtrace'
+gem 'stackprof', require: true
