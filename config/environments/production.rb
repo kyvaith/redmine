@@ -17,11 +17,13 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   # Disable delivery errors
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # No email in production log
-  config.action_mailer.logger = nil
+  # config.action_mailer.logger = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  
+  config.logger = ActiveSupport::Logger.new(config.paths['log'].first, shift_age = 15, shift_size = 20 * 1024 * 1024)
 end

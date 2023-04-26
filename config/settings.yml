@@ -249,6 +249,7 @@ project_list_defaults:
     - name
     - identifier
     - short_description
+    - cf_101
 issue_done_ratio:
   default: 'issue_field'
 default_projects_public:
