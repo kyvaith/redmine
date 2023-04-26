@@ -1068,6 +1068,7 @@ pl:
   setting_non_working_week_days: Dni nie-robocze
   label_in_the_next_days: w ciągu następnych dni
   label_in_the_past_days: w ciągu poprzednich dni
+  in between past days: pomiędzy dni temu
   label_attribute_of_user: User's %{name}
   text_turning_multiple_off: Jeśli wyłączysz wielokrotne wartości, istniejące wielokrotne wartości zostana usunięte w celu zachowania tylko jednej z nich dla każdego obiektu.
   label_attribute_of_issue: Issue's %{name}

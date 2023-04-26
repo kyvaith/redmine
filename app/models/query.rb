@@ -296,6 +296,7 @@ class Query < ActiveRecord::Base
     ">t-" => :label_less_than_ago,
     "<t-" => :label_more_than_ago,
     "><t-"=> :label_in_the_past_days,
+	"><t" => :label_in_between_past_days,
     "t-"  => :label_ago,
     "~"   => :label_contains,
     "!~"  => :label_not_contains,
@@ -316,8 +317,8 @@ class Query < ActiveRecord::Base
     :list_status => [ "o", "=", "!", "c", "*" ],
     :list_optional => [ "=", "!", "!*", "*" ],
     :list_subprojects => [ "*", "!*", "=", "!" ],
-    :date => [ "=", ">=", "<=", "><", "<t+", ">t+", "><t+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", ">t-", "<t-", "><t-", "t-", "!*", "*" ],
-    :date_past => [ "=", ">=", "<=", "><", ">t-", "<t-", "><t-", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*" ],
+    :date => [ "=", ">=", "<=", "><", "<t+", ">t+", "><t+", "t+", "nd", "t", "ld", "nw", "w", "lw", "l2w", "nm", "m", "lm", "y", ">t-", "<t-", "><t-", "><t", "t-", "!*", "*" ],
+    :date_past => [ "=", ">=", "<=", "><", ">t-", "<t-", "><t-", "><t", "t-", "t", "ld", "w", "lw", "l2w", "m", "lm", "y", "!*", "*" ],
     :string => [ "~", "=", "!~", "!", "^", "$", "!*", "*" ],
     :text => [  "~", "!~", "^", "$", "!*", "*", "match", "!match" ],
     :integer => [ "=", ">=", "<=", "><", "!*", "*" ],
@@ -483,7 +484,7 @@ class Query < ActiveRecord::Base
                end
               add_filter_error(field, :invalid)
             end
-          when ">t-", "<t-", "t-", ">t+", "<t+", "t+", "><t+", "><t-"
+          when ">t-", "<t-", "t-", ">t+", "<t+", "t+", "><t+", "><t-", "><t"
             if values_for(field).detect {|v| v.present? && !/^\d+$/.match?(v)}
               add_filter_error(field, :invalid)
             end
@@ -1368,7 +1369,10 @@ class Query < ActiveRecord::Base
     when "><t-"
       # between today - n days and today
       sql = relative_date_clause(db_table, db_field, - value.first.to_i, 0, is_custom_filter)
-    when ">t-"
+	when "><t"
+      # between x days ago and y days ago
+      sql = relative_date_clause(db_table, db_field, - value[1].to_i, - value[0].to_i, is_custom_filter)
+	when ">t-"
       # >= today - n days
       sql = relative_date_clause(db_table, db_field, - value.first.to_i, nil, is_custom_filter)
     when "<t-"

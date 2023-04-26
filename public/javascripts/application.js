@@ -212,11 +212,13 @@ function buildFilterRow(field, operator, values) {
     tr.find('td.values').append(
       '<span style="display:none;"><input type="date" name="v['+field+'][]" id="values_'+fieldId+'_1" size="10" class="value date_value" /></span>' +
       ' <span style="display:none;"><input type="date" name="v['+field+'][]" id="values_'+fieldId+'_2" size="10" class="value date_value" /></span>' +
-      ' <span style="display:none;"><input type="text" name="v['+field+'][]" id="values_'+fieldId+'" size="3" class="value" /> '+labelDayPlural+'</span>'
+      ' <span style="display:none;"><input type="text" name="v['+field+'][]" id="values_'+fieldId+'" size="3" class="value" /> &</span>' +
+	  ' <span style="display:none;"><input type="text" name="v['+field+'][]" id="values_'+fieldId+'_3" size="3" class="value" /> '+labelDayPlural+'</span>'
     );
     $('#values_'+fieldId+'_1').val(values[0]).datepickerFallback(datepickerOptions);
     $('#values_'+fieldId+'_2').val(values[1]).datepickerFallback(datepickerOptions);
     $('#values_'+fieldId).val(values[0]);
+	$('#values_'+fieldId+'_3').val(values[1]);
     break;
   case "string":
   case "text":
@@ -318,7 +320,10 @@ function toggleOperator(field) {
     case "<t-":
     case "><t-":
     case "t-":
-      enableValues(field, [2]);
+      enableValues(field, [3]);
+      break;
+	case "><t":
+      enableValues(field, [2,3]);
       break;
     case "=p":
     case "=!p":
